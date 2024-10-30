@@ -17,9 +17,11 @@ class HomepageController extends AbstractController
     public function index(EntityManagerInterface $em,SectionRepository $sections): Response
     {
         $menu=$em->getRepository(Section::class)->findAll();
+        $articles = $em->getRepository(Article::class)->findAll();
         return $this->render('homepage/index.html.twig', [
             'menu' => $menu,
             'sections' => $sections->findAll(),
+            'articles' => $articles,
         ]);
     }
 

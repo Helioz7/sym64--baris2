@@ -4,6 +4,12 @@
 
 {% block body %}
 {{ dump(menu) }}
+{{ dump(articles) }}
+{% for article in articles %}
+<li class="nav-item">
+	<a href="{{ path('app_articles', {'slug': article.titleSlug}) }}" class="nav-link">{{ article.title }}</a>
+</li>
+{% endfor %}
 <section class="slider mt-4">
 		<div class="container-fluid">
 			<div class="row no-gutters">
