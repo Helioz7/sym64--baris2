@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+     <!-- theme meta -->
+	<meta name="theme-name" content="revolve" />
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="{{asset('asset/images/favicon.ico')}}" type="image/x-icon">
+
+	<!-- THEME CSS
+	================================================== -->
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="{{asset('asset/plugins/bootstrap/css/bootstrap.min.css')}}">
+	<!-- Themify -->
+	<link rel="stylesheet" href="{{asset('asset/plugins/themify/css/themify-icons.css')}}">
+	<link rel="stylesheet" href="{{asset('asset/plugins/slick-carousel/slick-theme.css')}}">
+	<link rel="stylesheet" href="{{asset('asset/plugins/slick-carousel/slick.css')}}">
+	<!-- Slick Carousel -->
+	<link rel="stylesheet" href="{{asset('asset/plugins/owl-carousel/owl.carousel.min.css')}}">
+	<link rel="stylesheet" href="{{asset('asset/plugins/owl-carousel/owl.theme.default.min.css')}}">
+	<link rel="stylesheet" href="{{asset('asset/plugins/magnific-popup/magnific-popup.css')}}">
+	<!-- manin stylesheet -->
+	<link rel="stylesheet" href="{{asset('asset/css/style.css')}}">
+        {% block stylesheets %}
+        {% endblock %}
+
+        {% block javascripts %}
+        {% endblock %}
+    </head>
+    <body>
+        {% include 'partials/header.html.twig' %}
+        {% block body %}{% endblock %}
+        {% include 'partials/footer.html.twig' %}
+       	<!-- THEME JAVASCRIPT FILES
+================================================== -->
+	<!-- initialize jQuery Library -->
+	<script src="{{asset('asset/plugins/jquery/jquery.js')}}"></script>
+	<!-- Bootstrap jQuery -->
+	<script src="{{asset('asset/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+	<script src="{{asset('asset/plugins/bootstrap/js/popper.min.js')}}"></script>
+	<!-- Owl caeousel -->
+	<script src="{{asset('asset/plugins/owl-carousel/owl.carousel.min.js')}}"></script>
+	<script src="{{asset('asset/plugins/slick-carousel/slick.min.js')}}"></script>
+	<script src="{{asset('asset/plugins/magnific-popup/magnific-popup.js')}}"></script>
+	<!-- Instagram Feed Js -->
+	<script src="{{asset('asset/plugins/instafeed-js/instafeed.min.js')}}"></script>
+	<!-- Google Map -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+	<script src="{{asset('asset/plugins/google-map/gmap.js')}}"></script>
+	<!-- main js -->
+	<script src="{{asset('asset/js/custom.js')}}"></script>
+    </body>
+</html>
