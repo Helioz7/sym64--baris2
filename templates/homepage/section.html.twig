@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Hello indexController!{% endblock %}
+{% block title %}Hello SectionController!{% endblock %}
 {% block body %}<section class="section-padding">
 		<div class="container">
 			<div class="row">
@@ -7,7 +7,7 @@
 					<div class="row">
 
 
-                    {% for article in articles %}
+                    {% for article in section.articles %}
 						<div class="col-lg-3 col-md-6">
 							<article class="post-grid mb-5">
 								<a class="post-thumb mb-4 d-block" href="{{path('app_articles')}}">
