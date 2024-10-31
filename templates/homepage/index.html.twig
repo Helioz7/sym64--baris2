@@ -8,6 +8,9 @@
 {% for article in articles %}
 <li class="nav-item">
 	<a href="{{ path('app_articles', {'slug': article.titleSlug}) }}" class="nav-link">{{ article.title }}</a>
+	<h1>{{article.user.fullname}}</h1> 
+	<p>{{article.articleDatePosted|date("F j, Y")}}</p>
+	<p>{{article.text}}
 </li>
 {% endfor %}
 <section class="slider mt-4">

@@ -25,8 +25,9 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
+        $users = [];
 
-        // Créer 30 utilisateurs
+        // Créer un utilisateur admin
         $admin = new User();
         $admin->setUsername('admin')
             ->setPassword($this->passwordHasher->hashPassword($admin, 'admin'))
@@ -36,6 +37,7 @@ class AppFixtures extends Fixture
             ->setUniqid(uniqid())
             ->setActivate(true);
         $manager->persist($admin);
+        $users[] = $admin;
 
         // Créer 5 rédacteurs
         for ($i = 1; $i <= 5; $i++) {
@@ -48,6 +50,7 @@ class AppFixtures extends Fixture
                 ->setUniqid(uniqid())
                 ->setActivate(true);
             $manager->persist($redac);
+            $users[] = $redac;
         }
 
         // Créer 24 utilisateurs
@@ -61,6 +64,7 @@ class AppFixtures extends Fixture
                 ->setUniqid(uniqid())
                 ->setActivate($i % 4 !== 0); // 3 sur 4 actifs
             $manager->persist($user);
+            $users[] = $user;
         }
 
         // Créer 6 sections
@@ -90,16 +94,14 @@ class AppFixtures extends Fixture
                 $article->setArticleDatePosted($faker->dateTimeBetween($article->getArticleDateCreate(), 'now'));
             }
 
-            // Assigner un auteur aléatoire (admin ou redacteur)
-            $author = $manager->getRepository(User::class)->findOneBy(['roles' => ['ROLE_REDAC']]) 
-                ?? $admin; // Prioriser un rédacteur, sinon l'admin
+            // Assigner un auteur aléatoire parmi les utilisateurs créés (admin ou rédacteurs)
+            $author = $users[array_rand($users)];
             $article->setUser($author);
 
-            // Assigner aléatoirement entre 2 et 40 articles à une section
-            $randomSectionCount = rand(2, 40); // Nombre d'articles à ajouter à une section
-            for ($m = 0; $m < $randomSectionCount; $m++) {
-                $randomSection = $sections[array_rand($sections)];
-                $randomSection->addArticle($article);
+            // Assigner aléatoirement entre 2 et 4 sections à cet article
+            $assignedSections = (array)array_rand($sections, rand(2, 4)); 
+            foreach ($assignedSections as $sectionIndex) {
+                $sections[$sectionIndex]->addArticle($article);
             }
 
             $manager->persist($article);
